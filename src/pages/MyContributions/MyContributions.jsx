@@ -39,15 +39,15 @@ export default function MyContributions({ user }) {
   };
 
   return (
-    <div className="flex-1 container mx-auto px-4 py-6">
-      <h2 className="text-2xl font-semibold mb-4">My Contributions</h2>
+    <div className="flex-1 container mx-auto h-[100vh] px-4 py-6">
+      <h2 className="text-3xl font-bold mb-6">My Contributions</h2>
       {loading ? <LoadingSpinner /> : (
         <div className="space-y-3">
           {contribs.map(c => (
             <div key={c._id} className="border p-3 rounded flex justify-between items-center">
               <div>
-                <div className="font-semibold">{c.name} • ৳{c.amount}</div>
-                <div className="text-xs">{new Date(c.date).toLocaleString()}</div>
+                <div className="font-semibold mb-2">{c.name} • ৳{c.amount}</div>
+                <div className="text-xs mb-2">{new Date(c.date).toLocaleString()}</div>
                 <div className="text-xs">Issue: {c.issueId}</div>
               </div>
               <div>

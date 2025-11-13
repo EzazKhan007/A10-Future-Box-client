@@ -27,7 +27,7 @@ export default function AllIssues() {
 
   return (
     <div className="h-screen flex-1 container mx-auto px-4 py-6">
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-3 mb-6">
         <input type="text" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search" className="border px-2 py-1 rounded"/>
         <select value={filter.category} onChange={e=>setFilter(s=>({...s,category:e.target.value}))} className="border px-2 py-1 rounded">
           <option value="">All categories</option>
@@ -51,7 +51,7 @@ export default function AllIssues() {
               <h3 className="font-semibold">{issue.title}</h3>
               <p className="text-xs">{issue.category} — {issue.location}</p>
               <p className="mt-1">Budget: ৳{issue.amount}</p>
-              <Link to={`/issue/${issue._id}`} className="text-blue-600 text-sm inline-block mt-2">See Details</Link>
+              <Link to={`/issue/${issue._id}`} className="mt-4 inline-block text-sm font-semibold text-blue-600 border p-4 w-full text-center rounded ">See Details</Link>
             </div>
           ))}
         </div>

@@ -25,7 +25,7 @@ export default function AddIssue({ user }) {
   };
 
   return (
-    <div className="max-w-xl mx-auto">
+    <div className="max-w-xl mx-auto h-[100vh]">
       <h2 className="text-2xl font-semibold mb-4">Add Issue</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <input {...register("title")} placeholder="Issue Title" required className="w-full border p-2 rounded" />
@@ -40,7 +40,7 @@ export default function AddIssue({ user }) {
         <textarea {...register("description")} placeholder="Description" required className="w-full border p-2 rounded"></textarea>
         <input {...register("image")} placeholder="Image URL" required className="w-full border p-2 rounded" />
         <input {...register("amount")} placeholder="Suggested Budget (BDT)" required className="w-full border p-2 rounded" />
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Submit</button>
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2  rounded">Submit</button>
       </form>
     </div>
   );
