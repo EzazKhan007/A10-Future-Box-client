@@ -9,15 +9,37 @@ export default function MyContributions({ user }) {
   const [contribs, setContribs] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(()=>{ fetchContribs(); }, []);
+
+
+    const [issues, setIssues] = useState([]);
+  const [filter, ] = useState({ category: "", status: "" });
+  const [search, ] = useState("");
+
+
+
+
+  async function fetchIssues(){
+    try {
+      const q = `?category=${filter.category}&status=${filter.status}&q=${encodeURIComponent(search)}`;
+      const res = await api.get("/issues" + q);
+  
+      
+      setIssues(res.data);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  
 
   const fetchContribs = async () => {
     setLoading(true);
     try {
+     await fetchIssues()
       const res = await api.get(`/contributions?email=${user.email}`);
       setContribs(res.data);
     } catch (e) { console.error(e); } finally { setLoading(false); }
   };
+  useEffect(()=>{ fetchContribs(); }, []);
 
   const downloadReport = (rec) => {
     const doc = new jsPDF();
@@ -27,7 +49,7 @@ export default function MyContributions({ user }) {
       body: [
         ["Name", rec.name],
         ["Email", rec.email],
-        ["Issue ID", rec.issueId],
+        ["Issue ID", rec.title],
         ["Amount", `৳${rec.amount}`],
         ["Date", new Date(rec.date).toLocaleString()],
         ["Address", rec.address || ""],
@@ -43,18 +65,24 @@ export default function MyContributions({ user }) {
       <h2 className="text-3xl font-bold mb-6">My Contributions</h2>
       {loading ? <LoadingSpinner /> : (
         <div className="space-y-3">
-          {contribs.map(c => (
+          {contribs.map(c => {
+
+const issue = issues.find(i=>i._id===c.issueId);
+          return (
             <div key={c._id} className="border p-3 rounded flex justify-between items-center">
               <div>
                 <div className="font-semibold mb-2">{c.name} • ৳{c.amount}</div>
                 <div className="text-xs mb-2">{new Date(c.date).toLocaleString()}</div>
-                <div className="text-xs">Issue: {c.issueId}</div>
+                <div className="text-xs">Issue: {issue ? issue.title : "Unknown"}</div>
+
               </div>
               <div>
                 <button onClick={()=>downloadReport(c)} className="px-3 py-1 bg-blue-600 text-white rounded">Download Report</button>
               </div>
             </div>
-          ))}
+          )
+
+         })}
         </div>
       )}
     </div>

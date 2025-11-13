@@ -31,6 +31,7 @@ export default function MyIssues({ user }) {
 
   return (
     <div className="flex-1 container mx-auto px-4 py-6">
+      <div className="w-full h-screen">
       <h2 className="text-2xl font-semibold mb-4">My Issues</h2>
       {loading ? <LoadingSpinner /> : (
         <div className="space-y-3">
@@ -48,6 +49,7 @@ export default function MyIssues({ user }) {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }
