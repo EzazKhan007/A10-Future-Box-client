@@ -29,18 +29,18 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">Login</h2>
+    <div className="max-w-md mx-auto h-[100vh]">
+      <h2 className="text-3xl font-bold mb-6">Login</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <input {...register("email")} placeholder="Email" required className="w-full border p-2 rounded"/>
         <input type="password" {...register("password")} placeholder="Password" required className="w-full border p-2 rounded"/>
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 w-full rounded">Login</button>
       </form>
       <div className="mt-3">
-        <button onClick={handleGoogle} className="bg-red-500 text-white px-4 py-2 rounded">Login with Google</button>
+        <button onClick={handleGoogle} className="bg-red-500 text-white px-4 py-2 w-full rounded">Login with Google</button>
       </div>
       <div className="mt-3">
-        <Link to="/register" className="text-sm underline">Register</Link>
+        <Link to="/register" className="text-sm  underline">Register</Link>
       </div>
     </div>
   );
